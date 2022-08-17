@@ -8,7 +8,9 @@ export default {
 },
 data(){
   return {
-    showModal:false
+    showModal:false,
+    purpleTitle:"purple",
+    blueTitle:"blue"
   }
 },
 methods:{
@@ -30,11 +32,18 @@ methods:{
   <main>
     <ToDoList />
     <button @click="openModal">Abrir Modal</button>
-    <Modal v-if="showModal" @close="closeModal"></Modal>
+    <Modal :titleColor="purpleTitle" :showButton="true" v-if="showModal" @close="closeModal" tittle="Top 5 madres más ricas">
+    <ol>
+      <li>La mamá de Roman</li>
+      <li>La mamá de Roman</li>
+      <li>La mamá de Roman</li>
+      <li>La mamá de Roman</li>
+      <li>La mamá de Roman</li>
+    </ol></Modal>
   </main>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 header{
   width: 100%;

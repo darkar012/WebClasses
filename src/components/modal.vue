@@ -1,9 +1,18 @@
 <script>
 export default {
+    props:{
+        tittle:String,
+        showButton:Boolean,
+        titleColor:String
+    },
   methods: {
     click() {},
     cerrarModal(){
         this.$emit('close')
+    }
+  }, computed:{
+    tittleClass(){
+        return `title--${this.titleColor}`
     }
   }
 };
@@ -11,18 +20,23 @@ export default {
 <template>
   <div class="backdrop" @click.self="cerrarModal">
     <aside class="modal-container">
-      <h1>hola soy un modal</h1>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis
-        voluptatum vitae molestiae laborum! Eius animi harum velit deserunt
-        delectus? Esse adipisci enim, natus debitis impedit explicabo voluptatum
-        voluptates dolor sit.
-      </p>
-      <button @click="cerrarModal">cerrar</button>
+      <h1 :class="tittleClass">{{tittle}}</h1>
+      <slot></slot>
+      <button @click="cerrarModal" v-if="showButton">cerrar</button>
+      <slot name="links"></slot>
     </aside>
   </div>
 </template>
 <style>
+
+.title--purple{
+color:purple;
+}
+
+.title--blue{
+color:blue;
+}
+
 .backdrop {
   position: fixed;
   display: flex;
